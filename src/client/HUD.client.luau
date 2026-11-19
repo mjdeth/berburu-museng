@@ -358,7 +358,7 @@ local function buyUpgrade(kind)
 end
 
 local speedButton = makeButton(shopPanel, "SpeedButton", UDim2.new(1, -16, 0, 34),
-	UDim2.new(0, 8, 0, 190), "Speed +4", Color3.fromRGB(50, 110, 180))
+	UDim2.new(0, 8, 0, 190), "Speed +8", Color3.fromRGB(50, 110, 180))
 if speedButton then
 	speedButton.MouseButton1Click:Connect(function()
 		task.spawn(function()
@@ -517,7 +517,7 @@ local function renderBase(payload)
 		.. " - base holds " .. #payload.Pads .. "/" .. Config.PadsPerBase
 	if speedButton then
 		local speedCost = Config.SpeedUpgradeCosts[payload.SpeedLevel + 1]
-		speedButton.Text = speedCost and ("Speed +4  " .. formatMoney(speedCost)) or "Speed MAXED"
+		speedButton.Text = speedCost and ("Speed +8  " .. formatMoney(speedCost)) or "Speed MAXED"
 	end
 	if carryButton then
 		local carryCost = Config.CarryUpgradeCosts[payload.CarryLevel + 1]
