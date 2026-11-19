@@ -265,6 +265,14 @@ function GameState.CountPlaced(player)
 	return count
 end
 
+-- Placed brainrots render at the same scale as wild ones (CatchService's
+-- WILD_SCALE): at the factory's native 1.0 they read as tiny toys on the
+-- pads next to the 1.6x wild population. ScaleTo scales about the model
+-- pivot, and the factory puts that pivot at ground level (the Root part
+-- sits exactly on the origin), so scaling grows the model upward from
+-- the pad surface and it stays seated -- no repositioning needed.
+local PLACED_SCALE = 1.6
+
 -- Build the model for a pad entry and stand it on the pad.
 function GameState.PlaceBrainrotModel(player, padIndex, id, mutation)
 	local data = playerDataByPlayer[player]
@@ -280,6 +288,7 @@ function GameState.PlaceBrainrotModel(player, padIndex, id, mutation)
 	if not model then
 		return nil
 	end
+	model:ScaleTo(PLACED_SCALE)
 	-- Same anchoring contract as the wild models: an anchored,
 	-- non-colliding root, so a placed brainrot can never fall through
 	-- its pad or be shoved off it.
