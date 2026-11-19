@@ -36,7 +36,7 @@ Config.RebirthCostGrowth = 6
 
 -- Upgrades.
 Config.BaseWalkSpeed = 16
-Config.SpeedPerLevel = 4
+Config.SpeedPerLevel = 8
 Config.SpeedUpgradeCosts = { 500, 2500, 10000 }
 Config.CarryUpgradeCosts = { 2000, 15000 } -- carry 2, then carry 3
 
