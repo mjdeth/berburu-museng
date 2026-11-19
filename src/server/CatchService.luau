@@ -156,7 +156,8 @@ end
 -- and give its label a much longer reach than the pad label it was
 -- built with. ScaleTo is absolute, so re-applying it to a model that
 -- cycles wild -> carried -> wild never compounds. Pad models are
--- built fresh by GameState and are never emphasised.
+-- built fresh by GameState at the same scale (PLACED_SCALE); only
+-- the longer label reach is wild-only.
 local WILD_SCALE = 1.6
 
 local function emphasizeWildModel(model)
