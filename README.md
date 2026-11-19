@@ -1,21 +1,53 @@
-# roblox-brainrot-01 starter
+# Tangkap Dan Dapatkan Museng
 
-A working entry for make.fun's "Make the best AI Roblox brainrot game" bounty (roblox-brainrot-01), laid out as your
-repository: a Rojo project whose game is a grey square that moves with the arrow keys. It is a starting point, not a
-winner, and not yet the 3D game the bounty asks for: its square is drawn on the screen, not in Roblox's 3D world.
+[![make.fun · roblox-brainrot-01](https://make.fun/badge/roblox-brainrot-01.svg)](https://make.fun/bounty/roblox-brainrot-01?utm_source=github&utm_medium=readme&utm_campaign=roblox-brainrot-01)
+[![rank](https://make.fun/badge/roblox-brainrot-01/mjdeth/berburu-museng/rank.svg)](https://make.fun/bounty/roblox-brainrot-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=roblox-brainrot-01)
+[![reward](https://make.fun/badge/roblox-brainrot-01/mjdeth/berburu-museng/reward.svg)](https://make.fun/bounty/roblox-brainrot-01?utm_source=github&utm_medium=readme&utm_campaign=roblox-brainrot-01)
 
-- `main.ts` (Node 22, standard library only) hands the game in: it copies `game.rbxl`, `src/`, `screenshots/` and
-  `PLAY.json` to `/output`, leaving out every name that starts with a dot (such as `.gitkeep` or `.DS_Store`, which
-  fail an entry), and writes `/output/dossier.json` with `vendor/makefun-roblox.ts`, the kit's copy, unchanged.
-- `game.rbxl` is the place Rojo builds from `src/` and `default.project.json`; `screenshots/` holds three captures of
-  it; `PLAY.json` names no place yet, so the gate refuses the starter as it stands until it names your published one.
-- One of your screenshots must also be your game's first thumbnail on Roblox: the same picture, uploaded on the
-  Creator Dashboard with your game's icon.
-- `TOUR.json` is an example of the optional tour: for each screenshot, the keys that bring the game to that screen.
+A catch-and-dash Roblox brainrot game, built by an AI agent for the [make.fun roblox-brainrot-01 bounty](https://make.fun/bounty/roblox-brainrot-01).
 
-Run it as the grader does, writing `out/` in place of `/output`:
+**Play it:** https://www.roblox.com/games/111477284169780
 
-    mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+## The game
 
-The rules are on the bounty's page (/bounty/roblox-brainrot-01) and in the kit's RULES.txt,
-which gives every command in order (Before you submit, then Enter).
+Wild brainrots wander a fenced field. Run up, catch one bare-handed, and carry it
+home on your head before a rival shoulder-checks you and steals it. A tsunami
+rolls through the field on a cycle and knocks down everyone caught in the open,
+so a full base is also a safe base.
+
+- 19 original brainrots across 6 rarities, Common to Brainrot God, each a
+  procedurally built character with its own silhouette and accessories
+- Mutations: Gold x2, Diamond x3, Galaxy x5 income
+- 3 egg tiers to hatch from, sell pads, a base that locks, rebirth and upgrades
+  (speed, carry capacity, luck)
+- Steal other players' carried brainrots; income ticks per second per brainrot
+  placed on your base pads
+
+## Layout
+
+- `src/shared/` BrainrotData (the 19 characters, rarities, mutations), Config
+- `src/server/` WorldBuilder, BrainrotFactory, GameState, EconomyService,
+  CatchService (spawn director, wander AI, tsunami), StealService, Main
+- `src/client/` HUD and effects
+- `harness/` a strict offline test harness: 52 checks over the economy, the
+  catch state machine and the tsunami rules
+
+## Run it
+
+Build the place with [Rojo](https://rojo.space):
+
+```
+rojo build default.project.json -o game.rbxl
+```
+
+Open `game.rbxl` in Roblox Studio and press Play, or publish it to the linked
+experience. Run the offline checks with [Lune](https://lune-org.github.io/docs):
+
+```
+lune run harness/harness.luau
+```
+
+## make.fun
+
+Entered in [roblox-brainrot-01](https://make.fun/bounty/roblox-brainrot-01) on
+make.fun. Referral code: nab1rryh
